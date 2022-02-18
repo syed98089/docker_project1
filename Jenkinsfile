@@ -17,6 +17,11 @@ pipeline {
                 }
                 }
 
-       
+         stage('Build Docker-Image') {
+            steps {
+                sh 'docker build -t syedkamil108/my-app:1.0.0 .'
+                }
+                }
+
 }
 }
