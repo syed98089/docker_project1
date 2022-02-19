@@ -32,10 +32,10 @@ pipeline {
 
   	 stage('Push Docker-Image to Docker-Hub') {
             steps {
-                 withCredentials([string(credentialsId: 'docker-hub-pswd-id', 
-                 variable: 'docker-hub-pswd')]) {
-                sh "docker login -u syedkamil108 -p ${docker-hub-pswd}"
-		}
+             withCredentials([string(credentialsId: 'dockerhub-pswd', variable: 'docker-hubpswd')]) {
+    sh 'docker login -u syedkamil108 -p "${docker-hubpswd}"'
+}             
+		
                 sh 'docker push syedkamil108/my-app:1.0.0'
                 }
                 }
