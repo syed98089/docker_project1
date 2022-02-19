@@ -24,7 +24,7 @@ pipeline {
 
          stage('Build Docker-Image') {
             steps {
-                
+                sh 'find . -type f -iname "*.war"'
                 sh 'docker build -t syedkamil108/my-app:1.0.0 .'
                 }
                 }
