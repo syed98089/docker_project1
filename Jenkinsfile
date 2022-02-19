@@ -4,8 +4,7 @@ pipeline {
            maven "Maven"
               }
           environment {    
-	     dockerCmd = 'docker run -p 8080:8080 -d --name my-appContainer syedkamil108/my-app:1.0.0' 
-		
+	     def dockerCmd 		
                 }      
     stages {
         stage('Checkout') {
@@ -46,6 +45,8 @@ pipeline {
 	 stage('Deploy Docker-Image and Run Docker Container on Web-server') {
                   
             steps {
+		def dockerCmd = 'docker run -p 8080:8080 -d --name my-appContainer syedkamil108/my-app:1.0.0'
+
 	      
                  sshagent(['webserver-id']) {
      	         sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.26.96 ${dockerCmd}"	
