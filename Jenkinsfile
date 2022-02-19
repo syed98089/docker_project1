@@ -44,10 +44,9 @@ pipeline {
                   
             steps {
                 script {
-		def dockerCmd = sh 'docker run -d -p 8090:8090 --name myapp syedkamil108/my-app:1.0.0'     
+		def dockerCmd = sh 'docker run -p 8080:8080 -d --name myapp syedkamil108/my-app:1.0.0'     
                  sshagent(['webserver-id']) {
-     	         sh 'ssh -o StrictHostKeyChecking=no ec2-user@172.31.26.96' 
-                 sh "${dockerCmd}"	
+     	         sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.26.96:${dockerCmd}"
                 
                 }
                 }
