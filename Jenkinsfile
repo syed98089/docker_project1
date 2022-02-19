@@ -15,8 +15,9 @@ pipeline {
             steps {
                 sh 'mvn clean package'
                 sh 'pwd'
-                sh 'ls -ltr && cd webapp/'
-		sh 'ls -ltr'
+                sh 'find . -type d -name "target"'
+               // sh 'ls -ltr && cd webapp/'
+	      //sh 'ls -ltr'
                 }
                 }
 
