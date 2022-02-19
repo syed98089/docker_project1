@@ -14,12 +14,14 @@ pipeline {
          stage('Build for package artifact') {
             steps {
                 sh 'mvn clean package'
+                sh 'pwd'
                 }
                 }
 
+
          stage('Build Docker-Image') {
             steps {
-                sh 'pwd'
+                
                 sh 'docker build -t syedkamil108/my-app:1.0.0 .'
                 }
                 }
