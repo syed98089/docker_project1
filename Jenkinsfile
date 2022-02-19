@@ -1,9 +1,10 @@
 pipeline {
+def dockerCmd;
     agent any
        tools{
            maven "Maven"
               }
-         def dockerCmd;       
+                
     stages {
         stage('Checkout') {
             steps {
