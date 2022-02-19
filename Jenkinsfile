@@ -3,9 +3,7 @@ pipeline {
        tools{
            maven "Maven"
               }
-               environment {
-		def dockerCmd; 
-			}
+               		
     stages {
         stage('Checkout') {
             steps {
