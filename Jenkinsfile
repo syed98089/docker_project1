@@ -44,7 +44,7 @@ pipeline {
                   
             steps {
                 script {
-		def dockerCmd = 'docker run -p 8000:8000 -d --name myapp syedkamil108/my-app:1.0.0'     
+		sh ' def dockerCmd = docker run -p 8000:8000 -d --name myapp syedkamil108/my-app:1.0.0'     
                  sshagent(['webserver-id']) {
                     
                   //def dockerCmd = sh 'docker run -p 8000:8000 -d --name myapp syedkamil108/my-app:1.0.0'
