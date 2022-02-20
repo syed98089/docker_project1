@@ -26,7 +26,7 @@ pipeline {
          stage('Build Docker-Image') {
             steps {
                 sh 'find . -type f -iname "*.war"'
-                sh 'docker build -t syedkamil108/my-app:1.0.0 .'
+                sh 'docker build -t syedkamil108/my-app:2.0.0 .'
                 }
                 }
         
@@ -37,7 +37,7 @@ pipeline {
                 sh "docker login -u syedkamil108 -p ${dockerhubpasswd}"
 }
           	
-                sh 'docker push syedkamil108/my-app:1.0.0'
+                sh 'docker push syedkamil108/my-app:2.0.0'
                 }
                 }
 	 stage('Deploy Docker-Image and Run Docker Container on Web-server') {
@@ -48,7 +48,7 @@ pipeline {
                  sshagent(['webserver-id']) {
            //def dockerCmd='docker run -p 8000:8000 -d --name myapp syedkamil108/my-app:1.0.0'
      	         sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.26.96 docker rm -f myapp || true" 
-                 sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.26.96 docker run -p 8080:8080 -d --name myapp syedkamil108/my-app:1.0.0"
+                 sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.26.96 docker run -d -p 8080:8080 --name myapp syedkamil108/my-app:2.0.0"
                 
                 }
                 }
